@@ -1,0 +1,411 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	controllerName="com.apsolut.fiori.PO_display.controller.Object">
+	<uxap:ObjectPageLayout showTitleInHeaderContent="true" showHeaderContent="true" showAnchorBar="true" upperCaseAnchorBar="false"
+		showFooter="false" subSectionLayout="TitleOnTop">
+		<uxap:headerContent>
+			<VBox alignItems="Stretch" direction="Column" fitContainer="true" width="100%" height="auto" justifyContent="Start" renderType="Div"
+				visible="true" displayInline="false">
+				<items>
+					<form:Form width="100%" editable="true" visible="true" columnLayout="3">
+						<!--<form:title>-->
+						<!--	<core:Title text="Basic Data" level="H1"/>-->
+						<!--</form:title>-->
+						<form:formContainers>
+							<form:FormContainer visible="true">
+								<form:formElements>
+									<form:FormElement visible="true">
+										<!--<form:label>-->
+										<!--	<Label text="Purchase Order ID" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>-->
+										<!--</form:label>-->
+										<form:fields>
+											<Text text="{i18n>objectViewPoId}: {PurchaseOrder}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</form:fields>
+									</form:FormElement>
+									<form:FormElement visible="true">
+										<!--<form:label>-->
+										<!--	<Label text="Name" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>-->
+										<!--</form:label>-->
+										<form:fields>
+											<Text text="{i18n>objectViewPoName}: {Name}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</form:fields>
+									</form:FormElement>
+									<form:FormElement visible="true">
+										<!--<form:label>-->
+										<!--	<Label text="Date" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>-->
+										<!--</form:label>-->
+										<form:fields>
+											<Text text="{i18n>objectViewPoDate}: {path: 'PurchaseOrderDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'yyyy/MM/dd' }}"
+												width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</form:fields>
+									</form:FormElement>
+									<form:FormElement visible="true">
+										<!--<form:label>-->
+										<!--	<Label text="States" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>-->
+										<!--</form:label>-->
+										<form:fields>
+											<Text text="{i18n>objectViewPoState}: {StatusText}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</form:fields>
+									</form:FormElement>
+								</form:formElements>
+								<form:title/>
+							</form:FormContainer>
+						</form:formContainers>
+						<form:layout>
+							<form:ResponsiveGridLayout adjustLabelSpan="true" columnsL="1" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+						</form:layout>
+					</form:Form>
+				</items>
+				<layoutData/>
+			</VBox>
+		</uxap:headerContent>
+		<uxap:headerTitle>
+			<uxap:ObjectPageHeader objectTitle="Purchase Order - {PurchaseOrder}" headerDesign="Light" objectImageShape="Square"
+				isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="false" isObjectSubtitleAlwaysVisible="false" isActionAreaAlwaysVisible="true">
+				<!--<uxap:actions>-->
+				<!--	<Button text="Action Button" type="Transparent" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>-->
+				<!--</uxap:actions>-->
+				<uxap:breadCrumbsLinks/>
+				<uxap:navigationBar/>
+			</uxap:ObjectPageHeader>
+		</uxap:headerTitle>
+		<uxap:sections>
+			<uxap:ObjectPageSection showTitle="true" title="General Information" titleUppercase="false" visible="true">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>objectViewPayment}" titleUppercase="false" mode="Collapsed">
+						<uxap:blocks>
+							<VBox id="payment" alignItems="Baseline" direction="Column" fitContainer="true" width="auto" height="auto" justifyContent="Start"
+								renderType="Div" visible="true" displayInline="true">
+								<items>
+									<Table id="Tpayment" width="100%" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20"
+										growingScrollToLoad="true" items="{path: 'test>/results'}">
+										<columns>
+											<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+												<header>
+													<Text text="{i18n>objectViewPaymentDays}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+												</header>
+												<footer/>
+											</Column>
+											<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+												<header>
+													<Text text="{i18n>objectViewDiscount}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+												</header>
+												<footer/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem type="Active">
+												<cells>
+													<ObjectIdentifier title="" text="{path: 'test>days'}" titleActive="false" visible="true"/>
+													<Text text="{parts: [ {path: 'test>discount'} ], formatter : '.formatter.percentage'}" width="auto" maxLines="1" wrapping="false"
+														textAlign="Begin" textDirection="Inherit"/>
+													<!--<ObjectNumber number="{path: 'discount', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}" unit="{unit}"-->
+													<!--	emphasized="true" state="None"/>-->
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</items>
+								<layoutData/>
+							</VBox>
+						</uxap:blocks>
+						<uxap:moreBlocks/>
+						<uxap:actions/>
+					</uxap:ObjectPageSubSection>
+					<uxap:ObjectPageSubSection title="{i18n>objectViewDelivery}" titleUppercase="false" mode="Collapsed">
+						<uxap:blocks>
+							<VBox alignItems="Baseline" direction="Column" fitContainer="true" width="auto" height="auto" justifyContent="Start" renderType="Div"
+								visible="true" displayInline="true">
+								<items>
+									<!--<Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">-->
+									<!--	<content>-->
+									<!--<Title text="Terms of Delivery" titleStyle="H1" width="auto" textAlign="Begin" visible="true"/>-->
+									<!--<ToolbarSpacer width=""/>-->
+									<!--	</content>-->
+									<!--	<tooltip/>-->
+									<!--</Toolbar>-->
+									<Table width="100%" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true">
+										<infoToolbar>
+											<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+												<content>
+													<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+												</content>
+											</Toolbar>
+										</infoToolbar>
+										<headerToolbar/>
+										<columns>
+											<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+												<header>
+													<Text text="{i18n>objectViewIncoterms}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+												</header>
+												<footer/>
+											</Column>
+											<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+												<header>
+													<Text text="{i18n>objectViewLoc}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+												</header>
+												<footer/>
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem type="Active">
+												<cells>
+													<ObjectIdentifier title="" text="{IncotermsClassification}" titleActive="false" visible="true"/>
+													<Text text="{parts: [ {path: 'IncotermsLocation1'},{path: 'IncotermsLocation2'} ], formatter : '.formatter.concatenate'}" width="auto"
+														maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</items>
+								<layoutData/>
+							</VBox>
+						</uxap:blocks>
+						<uxap:moreBlocks/>
+						<uxap:actions/>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+				<uxap:customAnchorBarButton/>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection showTitle="true" title="{i18n>objectViewItemOverview}" titleUppercase="false" visible="true">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="{i18n>objectViewItemOverview}" titleUppercase="false" mode="Expanded">
+						<uxap:blocks>
+							<VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div"
+								visible="true" displayInline="false">
+								<Table width="100%" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true"
+									items="{Items}">
+									<columns>
+										<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+											<header>
+												<Text text="{i18n>objectViewNum}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											</header>
+											<footer/>
+										</Column>
+										<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+											<header>
+												<Text text="{i18n>objectShortText}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											</header>
+											<footer/>
+										</Column>
+										<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+											<header>
+												<Text text="{i18n>objectViewProduct}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											</header>
+											<footer/>
+										</Column>
+										<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+											<header>
+												<Text text="{i18n>objectViewQuan}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											</header>
+											<footer/>
+										</Column>
+										<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+											<header>
+												<Text text="{i18n>objectViewValue}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											</header>
+											<footer/>
+										</Column>
+										<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+											<header>
+												<Text text="{i18n>objectViewRequireOn}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											</header>
+											<footer/>
+										</Column>
+										<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+											<header>
+												<Text text="{i18n>objectViewConfirmQuan}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											</header>
+											<footer/>
+										</Column>
+										<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+											<header>
+												<Text text="{i18n>objectViewConfirmFor}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											</header>
+											<footer/>
+										</Column>
+										<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+											<header>
+												<Text text="{i18n>objectViewPoState}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											</header>
+											<footer/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Active">
+											<cells>
+												<!--<ObjectIdentifier title="" text="{path: 'PurchaseOrderItem', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}"-->
+												<!--	titleActive="false" visible="true"/>-->
+												<Text text="{PurchaseOrderItem}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+												<Text text="{PurchasingDocumentItemText}" width="auto" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit"/>
+												<Text text="{Product}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+												<Text text="{path: 'PurgDocItemQuantity', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}" width="auto"
+													maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+												<ObjectNumber number="{path: 'PurchaseOrderItemNetAmount', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}"
+													unit="{currency}" emphasized="true" state="None"/>
+												<!--<Text text="{path: 'DeliveryDate', type: 'sap.ui.model.type.Date', formatOptions: { UTC: true, style: 'short' }}" width="auto" maxLines="1"-->
+												<!--	wrapping="false" textAlign="Begin" textDirection="Inherit"/>-->
+												<Text text="{parts: [ {path: 'DeliveryDate'} ], formatter : '.formatter.stringToDate'}" width="auto" maxLines="1" wrapping="false"
+													textAlign="Begin" textDirection="Inherit"/>
+												<Text text="{confirm_quantity}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+												<Text text="{path: 'confirm_for', type: 'sap.ui.model.type.Date', formatOptions: { UTC: true, style: 'short' }}" width="auto" maxLines="1"
+													wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+												<Text text="{status}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<form:Form width="100%" editable="true" visible="true">
+									<form:title/>
+									<form:formContainers>
+										<form:FormContainer visible="true">
+											<form:formElements>
+												<form:FormElement visible="true">
+													<form:label>
+														<Label text="{i18n>objectViewNetValueUI}" design="Standard" width="100%" required="false" textAlign="Left" textDirection="Inherit"/>
+													</form:label>
+													<form:fields>
+														<ObjectNumber number="0" unit="Unit" emphasized="true" state="None"/>
+													</form:fields>
+												</form:FormElement>
+												<form:FormElement visible="true">
+													<form:label>
+														<Label text="{i18n>objectViewNetValueCI}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+													</form:label>
+													<form:fields>
+														<ObjectNumber number="0" unit="Unit" emphasized="true" state="None"/>
+													</form:fields>
+												</form:FormElement>
+												<form:FormElement visible="true">
+													<form:label>
+														<Label text="{i18n>objectViewNetValueTOI}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+													</form:label>
+													<form:fields>
+														<ObjectNumber number="0" unit="Unit" emphasized="true" state="None"/>
+													</form:fields>
+												</form:FormElement>
+											</form:formElements>
+											<form:title/>
+										</form:FormContainer>
+									</form:formContainers>
+									<form:layout>
+										<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+									</form:layout>
+								</form:Form>
+							</VBox>
+						</uxap:blocks>
+						<uxap:moreBlocks/>
+						<uxap:actions/>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+				<uxap:customAnchorBarButton/>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection showTitle="true" title="Partner Information" titleUppercase="false" visible="true">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="Partner Information" titleUppercase="false" mode="Collapsed">
+						<uxap:blocks>
+							<Table width="100%" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true"
+								items="{toPartner}">
+								<infoToolbar>
+									<Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+										<content>
+											<Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit"/>
+										</content>
+									</Toolbar>
+								</infoToolbar>
+								<headerToolbar/>
+								<columns>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="Partner" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="{i18n>objectViewNum}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="{i18n>objectViewName}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="{i18n>objectStreet}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="{i18n>objectViewHouseNo}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="{i18n>objectViewPostCode}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="{i18n>objectViewLoc}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="{i18n>objectViewTel}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="{i18n>objectViewFax}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</header>
+										<footer/>
+									</Column>
+									<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+										<header>
+											<Text text="{i18n>objectViewEmail}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</header>
+										<footer/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Active">
+										<cells>
+											<ObjectIdentifier title="" text="{Partner}" titleActive="false" visible="true"/>
+											<Text text="{Number}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<ObjectNumber number="" unit="{Name}" emphasized="true" state="None"/>
+											<Text text="{street}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<Text text="{House_No}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<Text text="{PostCode}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<Text text="{Location}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<Text text="{Tel}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<Text text="{Fax}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+											<Text text="{Email}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</uxap:blocks>
+						<uxap:moreBlocks/>
+						<uxap:actions/>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+				<uxap:customAnchorBarButton/>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+		<uxap:footer>
+			<Bar design="Auto">
+				<contentLeft/>
+				<contentMiddle/>
+				<contentRight/>
+			</Bar>
+		</uxap:footer>
+	</uxap:ObjectPageLayout>
+</mvc:View>
